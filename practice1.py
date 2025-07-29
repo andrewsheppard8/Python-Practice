@@ -53,3 +53,5 @@
 #     x=str[4:]
 #     print(x)
 # split("Thailand")
+
+print("Practicing changes in VSCode")
