@@ -64,3 +64,26 @@
 #     return "".join(result)
 
 # print(uppercase("bob")) #BoB
+
+"""organize letters alphabetically"""
+# x=["aa","cb","de","ze","ee"]
+# # x.sort()
+# y=sorted(x)
+# print(y)
+
+"""working with classes"""
+# class Dog:
+
+#     def __init__(self,name,breed):
+#         self.name = name
+#         self.breed = breed
+
+#     def bark(self):
+#         return f"{self.name} says hi!"
+    
+#     def groom(self):
+#         return f"{self.name} is getting groomed!"
+
+# fluffy = Dog("Rusty","Poodle")
+# print(fluffy.bark())
+# print(fluffy.groom())
