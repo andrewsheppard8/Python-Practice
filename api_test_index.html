@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Bank UI</title>
+</head>
+<body>
+    <h1>Mini Bank UI</h1>
+
+    <label>Account Name:</label>
+    <input type="text" id="owner" placeholder="Enter name">
+    <br><br>
+
+    <button onclick="checkBalance()">Check Balance</button>
+    <button onclick="deposit()">Deposit $50</button>
+    <button onclick="withdraw()">Withdraw $50</button>
+
+    <h2>Result:</h2>
+    <!-- Using pre to preserve formatting -->
+    <pre id="result"></pre>
+
+    <script>
+        const apiBase = "http://127.0.0.1:5000";
+
+        function checkBalance() {
+            const owner = document.getElementById("owner").value;
+            fetch(`${apiBase}/balance?owner=${owner}`)
+                .then(res => res.json())
+                //JSON.stringify for readability (value, replacer (often NULL), number of spaces)
+                //The third parameter is important, how many lines to put the result on
+                .then(data => document.getElementById("result").textContent = JSON.stringify(data, null, 2))
+                .catch(err => console.error(err));
+        }
+
+        function deposit() {
+            const owner = document.getElementById("owner").value;
+            fetch(`${apiBase}/deposit`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({owner: owner, amount: 50})
+            })
+            .then(res => res.json())
+            .then(data => document.getElementById("result").textContent = JSON.stringify(data, null, 2))
+            .catch(err => console.error(err));
+        }
+
+        function withdraw() {
+            const owner = document.getElementById("owner").value;
+            fetch(`${apiBase}/withdraw`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({owner: owner, amount: 50})
+            })
+            .then(res => res.json())
+            .then(data => document.getElementById("result").textContent = JSON.stringify(data, null, 2))
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
